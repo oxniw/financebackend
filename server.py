@@ -74,17 +74,22 @@ mon = {
 uri = "mongodb+srv://oo6139116:SzWWT4wcCRputGjU@cluster1.kuekvv6.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1"
 app = Flask(__name__)
 CORS(app, originns="*")
-client = MongoClient(uri, server_api=ServerApi('1'),
-                    tls=True,
-                    tlsCAFile=certifi.where())
+client = MongoClient(
+    uri,
+    server_api=ServerApi('1'),
+    tls=True,
+    tlsCAFile=certifi.where(),
+    socketTimeoutMS=60000,
+    connectTimeoutMS=60000
+)
 db = client["myfirst"]
 usersdata = db["usersdatatest"]
 usersnameandpassword = db["usersnameandpasswordtest"]
 usersname = db["usersnametest"]
 userandwin = db["userandwintest"]
 @app.route("/")
-def hello():
-    return "Hello from Flask!"
+def home():
+    return "Flask App is Running!", 200
 def checkpassword(password:str,storewhy):
     c=True
     #if len(password)<8 or len(password)>20:
@@ -721,4 +726,4 @@ def delete_note():
             return jsonify({"message":"notok","why":"username incorrect"})
     
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,port=5000)
