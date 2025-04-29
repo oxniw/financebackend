@@ -79,8 +79,8 @@ client = MongoClient(
     server_api=ServerApi('1'),
     tls=True,
     tlsCAFile=certifi.where(),
-    socketTimeoutMS=3600000,
-    connectTimeoutMS=3600000
+    socketTimeoutMS=720000,
+    connectTimeoutMS=720000
 )
 db = client["myfirst"]
 usersdata = db["usersdatatest"]
