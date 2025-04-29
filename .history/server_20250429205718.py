@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+import requests
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 from datetime import date
@@ -80,8 +81,8 @@ usersnameandpassword = db["usersnameandpasswordtest"]
 usersname = db["usersnametest"]
 userandwin = db["userandwintest"]
 @app.route("/")
-def hello():
-    return "Hello from Flask!"
+def home():
+    return "Flask App is Running!", 200
 def checkpassword(password:str,storewhy):
     c=True
     #if len(password)<8 or len(password)>20:
@@ -718,4 +719,4 @@ def delete_note():
             return jsonify({"message":"notok","why":"username incorrect"})
     
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True,port=5000)
