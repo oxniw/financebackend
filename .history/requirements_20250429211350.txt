@@ -1,5 +1,0 @@
-datetime
-pymongo
-flask
-flask_cors
-gunicorn

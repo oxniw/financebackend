@@ -1,8 +1,0 @@
-datetime
-pymongo
-flask
-flask_cors
-gunicorn
-certifi
-pymongo>=4.0
-dnspython>=2.0.0
