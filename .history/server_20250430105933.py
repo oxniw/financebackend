@@ -78,15 +78,16 @@ app = Flask(__name__)
 CORS(app, origins="*")
 context = ssl.create_default_context()
 context.minimum_version = ssl.TLSVersion.TLSv1_2
-context.load_verify_locations(certifi.where())
 client = MongoClient(
     uri,
     server_api=ServerApi('1'),
+    ssl=True,
+    ssl_cert_reqs=ssl.CERT_REQUIRED,
+    ssl_ca_certs=certifi.where(),
     ssl_context=context,
     socketTimeoutMS=3600000,
     connectTimeoutMS=3600000
 )
-
 db = client["myfirst"]
 usersdata = db["usersdatatest"]
 usersnameandpassword = db["usersnameandpasswordtest"]
