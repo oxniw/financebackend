@@ -5,6 +5,7 @@ from pymongo.server_api import ServerApi
 from datetime import date
 from datetime import datetime
 import certifi
+import ssl
 
 mon = {
         "1":{
@@ -81,6 +82,7 @@ context.load_verify_locations(certifi.where())
 client = MongoClient(
     uri,
     server_api=ServerApi('1'),
+    ssl_context=context,
     socketTimeoutMS=3600000,
     connectTimeoutMS=3600000
 )
