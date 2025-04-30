@@ -145,7 +145,7 @@ def login():
                 return jsonify({"message":"notok","why":"username incorrect"})
         except Exception as e:
             return jsonify({"message":"notok","why":e})
-    
+
     return jsonify({"ok":True})
 @app.route("/api/signin",methods=["GET", "POST"])
 def signin():
