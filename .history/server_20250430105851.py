@@ -76,15 +76,11 @@ mon = {
 uri = "mongodb+srv://oo6139116:SzWWT4wcCRputGjU@cluster1.kuekvv6.mongodb.net/?retryWrites=true&w=majority&appName=Cluster1"
 app = Flask(__name__)
 CORS(app, origins="*")
-context = ssl.create_default_context()
-context.minimum_version = ssl.TLSVersion.TLSv1_2
 client = MongoClient(
     uri,
     server_api=ServerApi('1'),
-    ssl=True,
-    ssl_cert_reqs=ssl.CERT_REQUIRED,
-    ssl_ca_certs=certifi.where(),
-    ssl_context=context,
+    tls=True,
+    tlsCAFile=certifi.where(),
     socketTimeoutMS=3600000,
     connectTimeoutMS=3600000
 )
